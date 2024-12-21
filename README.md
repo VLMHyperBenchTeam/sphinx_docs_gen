@@ -4,7 +4,7 @@
 * статического html-сайта
 * pdf-файла документации
 
-с помощью `Sphinx`(https://www.sphinx-doc.org/en/master/index.html).
+с помощью `Sphinx`([ссылка](https://www.sphinx-doc.org/en/master/index.html)).
 
 # Компоненты документации Sphinx
 
