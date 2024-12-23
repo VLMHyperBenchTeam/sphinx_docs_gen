@@ -1,11 +1,15 @@
 # Описание
 
 Проект содержит `Docker`-образ для генерации документации из `markdown` файлов в виде:
-* статического html-сайта
-* pdf-файла документации через `texlive-latex`, команда `make latexpdf`
-* pdf-файла документации через Sphinx-SimplePDF([ссылка](https://sphinx-simplepdf.readthedocs.io/en/latest/index.html)), команда `make simplepdf`.
+1 статического html-сайта
+2 pdf-файла документации через `XeLaTeX`, команда `make latexpdf`
+ * XeLaTeX использует векторные шрифты для многих языков мира.
+* Это обеспечивает качественный векторный pdf-файл.
 
-Проект использует `weasyprint` ([ссылка](https://weasyprint.org/)) для генерации pdf-файла из `html`-сайта.
+3 pdf-файла документации через Sphinx-SimplePDF([ссылка](https://sphinx-simplepdf.readthedocs.io/en/latest/index.html)), команда `make simplepdf`.
+* Проект использует `weasyprint` ([ссылка](https://weasyprint.org/)) для генерации pdf-файла из `html`-сайта.
+* Красиво оформленные pdf-файлы.
+* Но не поддерживает latex-формулы. Только через превращение их в svg-картинку и этот модуль `sphinx.ext.imgmath` работает только с `ascii`-кодировкой в markdown.
 
 с помощью `Sphinx`([ссылка](https://www.sphinx-doc.org/en/master/index.html)).
 
@@ -81,7 +85,7 @@ make html
 
 После этой команды документация будет располагаться по пути `build/html` для статичного сайта.
 
-* для генерации документации в виде pdf, используя `texlive-latex`:
+* для генерации документации в виде pdf, используя ``XeLaTeX``:
 ```
 make latexpdf
 ```
@@ -104,7 +108,7 @@ make simplepdf
 
 Команды для запуска генерации документации:
 * `make html` для сохдания html-сайта
-* `make latexpdf` для генерации документации в виде pdf, используя `texlive-latex`
+* `make latexpdf` для генерации документации в виде pdf, используя `XeLaTeX`
 
 будут автоматически выполнены при запуске Docker-контейнера.
 
@@ -127,7 +131,7 @@ docker run -it --rm -v ${PWD}:/workspace ghcr.io/vlmhyperbenchteam/sphinx_docs_g
 
 После запуска контейнера документация будет располагаться:
 * `build/html` для статичного сайта
-* `build/latex` для pdf-документации, используя `texlive-latex`
+* `build/latex` для pdf-документации, используя `XeLaTeX`
 
 ## Build Docker image
 
