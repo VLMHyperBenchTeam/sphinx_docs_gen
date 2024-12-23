@@ -1,12 +1,12 @@
 # Описание
 
 Проект содержит `Docker`-образ для генерации документации из `markdown` файлов в виде:
-1 статического html-сайта
-2 pdf-файла документации через `XeLaTeX`, команда `make latexpdf`
+1. статического html-сайта
+2. pdf-файла документации через `XeLaTeX`, команда `make latexpdf`
  * XeLaTeX использует векторные шрифты для многих языков мира.
 * Это обеспечивает качественный векторный pdf-файл.
 
-3 pdf-файла документации через Sphinx-SimplePDF([ссылка](https://sphinx-simplepdf.readthedocs.io/en/latest/index.html)), команда `make simplepdf`.
+3. pdf-файла документации через Sphinx-SimplePDF([ссылка](https://sphinx-simplepdf.readthedocs.io/en/latest/index.html)), команда `make simplepdf`.
 * Проект использует `weasyprint` ([ссылка](https://weasyprint.org/)) для генерации pdf-файла из `html`-сайта.
 * Красиво оформленные pdf-файлы.
 * Но не поддерживает latex-формулы. Только через превращение их в svg-картинку и этот модуль `sphinx.ext.imgmath` работает только с `ascii`-кодировкой в markdown.
