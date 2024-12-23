@@ -10,9 +10,9 @@ sys.path.insert(0, os.path.abspath('.'))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'VLMHyperBench'
-copyright = '2024, VLMHyperBench Team'
-author = 'VLMHyperBench Team'
+project = 'ProjectName'
+copyright = '2024, CompanyName'
+author = 'CompanyName'
 
 # Версия документации
 version = '0.1.0'
@@ -30,6 +30,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
     'sphinx.ext.mathjax',  # или 'sphinx.ext.imgmath'
+    'sphinx_simplepdf'
 ]
 
 myst_enable_extensions = [
@@ -86,15 +87,10 @@ latex_elements = {
     'figure_align': 'htbp',
 }
 
-# Укажите путь к вашему адаптированному шаблону
-latex_additional_files = [
-    'eisvogel_sphinx.cls',  # Ваш адаптированный шаблон
-]
-
 # Основной документ (обычно это 'index')
 master_doc = 'index'
 
 latex_documents = [
     (master_doc, f'{project}.tex', f'{project} Documentation',
-     author, 'eisvogel_sphinx'),
+     author, 'manual'),
 ]

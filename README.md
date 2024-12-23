@@ -2,7 +2,10 @@
 
 Проект содержит `Docker`-образ для генерации документации из `markdown` файлов в виде:
 * статического html-сайта
-* pdf-файла документации
+* pdf-файла документации через `texlive-latex`, команда `make latexpdf`
+* pdf-файла документации через Sphinx-SimplePDF([ссылка](https://sphinx-simplepdf.readthedocs.io/en/latest/index.html)), команда `make simplepdf`.
+
+Проект использует `weasyprint` ([ссылка](https://weasyprint.org/)) для генерации pdf-файла из `html`-сайта.
 
 с помощью `Sphinx`([ссылка](https://www.sphinx-doc.org/en/master/index.html)).
 
@@ -41,29 +44,6 @@ source/conf.py
 
 Docker-образ опубликован на `GitHub Packages Container Registry` ([ссылка](https://github.com/orgs/VLMHyperBenchTeam/packages/container/package/sphinx_docs_gen)).
 
-## Запуск генерации статичного сайта и pdf c документацией
-
-Команды для запуска генерации статичного html-сайта и pdf-документации будут автоматически выполнены при запуске Docker-контейнера:
-
-* Linux / MacOs
-```
-docker run -it --rm -v $(pwd):/workspace ghcr.io/vlmhyperbenchteam/sphinx_docs_gen:0.1.0
-```
-
-* Windows (CMD)
-```
-docker run -it --rm -v %cd%:/workspace ghcr.io/vlmhyperbenchteam/sphinx_docs_gen:0.1.0
-```
-
-* Windows (PowerShell)
-```
-docker run -it --rm -v ${PWD}:/workspace ghcr.io/vlmhyperbenchteam/sphinx_docs_gen:0.1.0
-```
-
-После запуска контейнера документация будет располагаться:
-* `build/html` для статичного сайта
-* `build/latex` для pdf-документации
-
 ## Запуск Docker Container
 
 Бывает полезно произвести отладку генерации документации.
@@ -92,15 +72,62 @@ docker run -it -v $(PWD):/workspace ghcr.io/vlmhyperbenchteam/sphinx_docs_gen:0.
 make clean
 ```
 
+Содержимое папки `build` будет очищено.
+
 * для генерации статичного сайта из html:
 ```
 make html
 ```
 
-* для генерации документации в виде pdf:
+После этой команды документация будет располагаться по пути `build/html` для статичного сайта.
+
+* для генерации документации в виде pdf, используя `texlive-latex`:
 ```
 make latexpdf
 ```
+
+После этой команды документация будет располагаться по пути `build/latexpdf`. 
+
+Внутри будет pdf-файл документации и весь набор файлов Latex для его генерации.
+
+* для генерации документации в виде pdf, используя `simplepdf`:
+```
+make simplepdf
+```
+
+После этой команды документация будет располагаться по пути `build/simplepdf`. 
+
+Внутри будет pdf-файл документации и весь набор файлов Latex для его генерации.
+
+
+## Запуск генерации статичного сайта и pdf c документацией
+
+Команды для запуска генерации документации:
+* `make html` для сохдания html-сайта
+* `make latexpdf` для генерации документации в виде pdf, используя `texlive-latex`
+
+будут автоматически выполнены при запуске Docker-контейнера.
+
+Команды для запуска Docker-контейнера на различных платформах:
+
+* Linux / MacOs
+```
+docker run -it --rm -v $(pwd):/workspace ghcr.io/vlmhyperbenchteam/sphinx_docs_gen:0.1.0
+```
+
+* Windows (CMD)
+```
+docker run -it --rm -v %cd%:/workspace ghcr.io/vlmhyperbenchteam/sphinx_docs_gen:0.1.0
+```
+
+* Windows (PowerShell)
+```
+docker run -it --rm -v ${PWD}:/workspace ghcr.io/vlmhyperbenchteam/sphinx_docs_gen:0.1.0
+```
+
+После запуска контейнера документация будет располагаться:
+* `build/html` для статичного сайта
+* `build/latex` для pdf-документации, используя `texlive-latex`
 
 ## Build Docker image
 
