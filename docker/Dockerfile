@@ -1,4 +1,4 @@
-# Используем базовый образ Python 3.10
+# Используем базовый образ Python 3.12
 FROM python:3.12
 
 # Устанавливаем LaTeX и необходимые пакеты, включая XeLaTeX
@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     fonts-ipaexfont \
     && rm -rf /var/lib/apt/lists/*
 
-# Обновляем шрифтовый кэш
+# Обновляем кэш шрифтов
 RUN fc-cache -fv
 
 # Копируем файл pyproject.toml и poetry.lock
