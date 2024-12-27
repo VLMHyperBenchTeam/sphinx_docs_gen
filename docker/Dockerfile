@@ -1,5 +1,5 @@
 # Используем базовый образ Python 3.10
-FROM python:3.10
+FROM python:3.12
 
 # Устанавливаем LaTeX и необходимые пакеты, включая XeLaTeX
 RUN apt-get update && apt-get install -y \
@@ -7,12 +7,14 @@ RUN apt-get update && apt-get install -y \
     texlive-latex-extra \
     texlive-fonts-recommended \
     texlive-lang-cyrillic \
+    texlive-lang-cjk \
     latexmk \
-    fonts-dejavu \
     fonts-freefont-otf \
+    fonts-noto-cjk \
+    fonts-ipaexfont \
     && rm -rf /var/lib/apt/lists/*
 
-# обновляем кэш шрифтов, чтобы XeLaTeX их увидел.
+# Обновляем шрифтовый кэш
 RUN fc-cache -fv
 
 # Копируем файл pyproject.toml и poetry.lock
